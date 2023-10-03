@@ -8,6 +8,102 @@
 <body>
     <p>Welcome to my website!</p>
 
+    <button id="find">Show Profiles</button>
+    <h3 id="findname" type="text"></h3>
+    <img id="Profile pic" src="http://res.cloudinary.com/thunkablecloudinary123/image/upload/v1695312695/cvrzkbp33j3wbt4vgcbg.jpg" width = "200">
+    <h3 id="findage" type="number"></h3>
+    <h3 id="findmajor" type="text"></h3>
+    <h3 id="findmovie" type="text"></h3> <br><br>
+
+
+    <h3 id="findname2" type="text"></h3>
+    <img id="Profile pic2" src="http://res.cloudinary.com/thunkablecloudinary123/image/upload/v1695312695/cvrzkbp33j3wbt4vgcbg.jpg"width = "200">
+    <h3 id="findage2" type="number"></h3>
+    <h3 id="findmajor2" type="text"></h3>
+    <h3 id="findmovie2" type="text"></h3> <br><br>
+
     <iframe src="https://thunkable.site/w/tVfauv0qLXtGC507V1aTm" title="Profile App" height = 750 width = 500></iframe>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyBKx_XQvpmubX_MBejJLiHqCYgIhsAAJeU",
+          authDomain: "profileapp-92c41.firebaseapp.com",
+          databaseURL: "https://profileapp-92c41-default-rtdb.firebaseio.com",
+          projectId: "profileapp-92c41",
+          storageBucket: "profileapp-92c41.appspot.com",
+          messagingSenderId: "888870626141",
+          appId: "1:888870626141:web:8c76b7938b11d8fd767eb4",
+          measurementId: "G-8WYHVGCY9Q"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        import {getDatabase, set, get, update, remove, ref, child}
+        from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js"
+
+        const db = getDatabase();
+
+        var findAge = document.querySelector("#findage");
+        var findImage = document.querySelector("#findimage");
+        var findMajor = document.querySelector("#findmajor");
+        var findMovie = document.querySelector("#findmovie");
+        var findName = document.querySelector("#findname");
+
+        var findAge2 = document.querySelector("#findage2");
+        var findImage2 = document.querySelector("#findimage2");
+        var findMajor2 = document.querySelector("#findmajor2");
+        var findMovie2 = document.querySelector("#findmovie2");
+        var findName2 = document.querySelector("#findname2");
+
+        var findBtn = document.querySelector("#find");
+
+        function FindData() {
+            const dbref = ref(db);
+
+            get(child(dbref, "e3a7LzLxokO57uy4txTy9o65L2K2/"))
+            .then((snapshot)=>{
+                if(snapshot.exists()){
+                    findname.innerHTML = "Name: " + snapshot.val().name;
+                    findage.innerHTML = "Age: " + snapshot.val().age;
+                    findmajor.innerHTML = "Major: " + snapshot.val().major;
+                    findmovie.innerHTML = "Favorite Movie: " + snapshot.val().movie;
+                    findimage.innerHTML = snapshot.val().image;
+                } else {
+                    alert("No data found");
+                }
+            })
+            .catch((error)=>{
+                alert(error)
+            })
+
+
+            get(child(dbref, "Kqa9uE1lExch57VKVYFBeJ0l5533/"))
+            .then((snapshot)=>{
+                if(snapshot.exists()){
+                    findname2.innerHTML = "Name: " + snapshot.val().name;
+                    findage2.innerHTML = "Age: " + snapshot.val().age;
+                    findmajor2.innerHTML = "Major: " + snapshot.val().major;
+                    findmovie2.innerHTML = "Favorite Movie: " + snapshot.val().movie;
+                    findimage2.innerHTML = snapshot.val().image;
+                } else {
+                    alert("No data found");
+                }
+            })
+            .catch((error)=>{
+                alert(error)
+            })
+        }
+
+        findBtn.addEventListener('click', FindData);
+      </script>
 </body>
 </html>
