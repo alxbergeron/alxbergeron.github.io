@@ -10,14 +10,14 @@
 
     <button id="find">Show Profiles</button>
     <h3 id="findname" type="text"></h3>
-    <img id="Profile pic" src="http://res.cloudinary.com/thunkablecloudinary123/image/upload/v1695312695/cvrzkbp33j3wbt4vgcbg.jpg" width = "200">
+    <img id="findimage" src="findimage" width = "200">
     <h3 id="findage" type="number"></h3>
     <h3 id="findmajor" type="text"></h3>
     <h3 id="findmovie" type="text"></h3> <br><br>
 
 
     <h3 id="findname2" type="text"></h3>
-    <img id="Profile pic2" src="http://res.cloudinary.com/thunkablecloudinary123/image/upload/v1695312695/cvrzkbp33j3wbt4vgcbg.jpg"width = "200">
+    <img id="findimage2" src="findimage2"width = "200">
     <h3 id="findage2" type="number"></h3>
     <h3 id="findmajor2" type="text"></h3>
     <h3 id="findmovie2" type="text"></h3> <br><br>
@@ -76,7 +76,7 @@
                     findage.innerHTML = "Age: " + snapshot.val().age;
                     findmajor.innerHTML = "Major: " + snapshot.val().major;
                     findmovie.innerHTML = "Favorite Movie: " + snapshot.val().movie;
-                    findimage.innerHTML = snapshot.val().image;
+                    findimage.src = snapshot.val().image;
                 } else {
                     alert("No data found");
                 }
@@ -93,7 +93,7 @@
                     findage2.innerHTML = "Age: " + snapshot.val().age;
                     findmajor2.innerHTML = "Major: " + snapshot.val().major;
                     findmovie2.innerHTML = "Favorite Movie: " + snapshot.val().movie;
-                    findimage2.innerHTML = snapshot.val().image;
+                    findimage2.src = snapshot.val().image;
                 } else {
                     alert("No data found");
                 }
